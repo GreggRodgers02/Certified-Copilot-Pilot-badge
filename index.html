@@ -62,7 +62,6 @@
     font-size: 1.1rem; margin: 2.5rem 0 .75rem;
     padding-top: 1.5rem; border-top: 1px solid var(--border);
   }
-  h3 { font-size: .95rem; margin: 1.5rem 0 .4rem; color: var(--muted); font-weight: 600; }
   p { margin: 0 0 1rem; }
   a { color: var(--accent); }
 
@@ -109,28 +108,8 @@
     border-radius: 8px; border: 1px solid var(--border);
   }
 
-  .url-box {
-    background: var(--code-bg); border: 1px solid var(--border);
-    border-radius: 8px; padding: .75rem .9rem; overflow-x: auto;
-  }
-  .url-box code { white-space: pre; }
-  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .875em; }
-  p code, li code { background: var(--code-bg); border-radius: 4px; padding: .12em .35em; }
-  pre {
-    background: var(--code-bg); border: 1px solid var(--border);
-    border-radius: 8px; padding: .9rem; overflow-x: auto; margin: 0 0 1rem;
-  }
-  pre code { background: none; padding: 0; }
-
-  ul, ol { padding-left: 1.25rem; margin: 0 0 1rem; }
+  ul { padding-left: 1.25rem; margin: 0 0 1rem; }
   li { margin-bottom: .4rem; }
-
-  dl.facts {
-    display: grid; grid-template-columns: max-content 1fr;
-    gap: .35rem 1.25rem; margin: 1.25rem 0 0; font-size: .92rem;
-  }
-  dl.facts dt { color: var(--muted); }
-  dl.facts dd { margin: 0; }
 
   footer {
     margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
@@ -187,28 +166,6 @@
     <li>Use a photo at least 600&nbsp;pixels on its shortest side so it stays sharp.</li>
     <li>The download is a 750&nbsp;&times;&nbsp;750 PNG, sized for a profile picture in Teams, LinkedIn, or your email signature.</li>
   </ul>
-
-  <h2>About the badge</h2>
-
-  <p>The badge is a circular <strong>frame</strong>, not a solid graphic. A dark navy ring carries the words <em>CERTIFIED COPILOT PILOT</em> in white capitals. Gold aviator wings spread across the bottom of the ring, flanking a gold-rimmed medallion holding the Microsoft Copilot mark. The center is fully transparent, which is why your photo shows through it.</p>
-
-  <dl class="facts">
-    <dt>File</dt><dd><code>certified-copilot-pilot-badge.png</code></dd>
-    <dt>Format</dt><dd>PNG, 8-bit RGBA (alpha transparency)</dd>
-    <dt>Dimensions</dt><dd>750 × 750 pixels, square</dd>
-    <dt>Center</dt><dd>Transparent circle, radius 295&nbsp;px</dd>
-  </dl>
-
-  <h2>Using the badge elsewhere</h2>
-
-  <h3>Direct image URL</h3>
-  <p>Served as <code>image/png</code> over HTTPS with no authentication, for anywhere an external image source is needed:</p>
-  <div class="url-box"><code>https://greggrodgers02.github.io/Certified-Copilot-Pilot-badge/certified-copilot-pilot-badge.png</code></div>
-
-  <h3>In a Copilot agent</h3>
-  <p>To have an agent display the badge, put this in its instructions:</p>
-  <pre><code>![Certified Copilot Pilot badge](https://greggrodgers02.github.io/Certified-Copilot-Pilot-badge/certified-copilot-pilot-badge.png)</code></pre>
-  <p>To have an agent build these images from uploaded headshots, see <a href="agent-instructions.md">the agent instructions</a>.</p>
 
   <footer>
     Published with GitHub Pages from
