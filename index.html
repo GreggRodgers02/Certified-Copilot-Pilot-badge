@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Certified Copilot Pilot Badge</title>
-<meta name="description" content="The Certified Copilot Pilot badge: a circular navy-and-gold winged frame with a transparent center, published as a stable public PNG for use as an external image source in Copilot agents.">
+<meta name="description" content="Add the Certified Copilot Pilot badge to your photo. Upload a headshot, position it, and download a 750x750 PNG. Runs entirely in your browser — your photo is never uploaded anywhere.">
 <link rel="canonical" href="https://greggrodgers02.github.io/Certified-Copilot-Pilot-badge/">
 <link rel="icon" href="certified-copilot-pilot-badge.png">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Certified Copilot Pilot Badge">
-<meta property="og:description" content="A circular navy-and-gold winged badge frame with a transparent center, published as a stable public PNG.">
+<meta property="og:description" content="Upload your headshot and download it framed by the Certified Copilot Pilot badge. Nothing leaves your browser.">
 <meta property="og:url" content="https://greggrodgers02.github.io/Certified-Copilot-Pilot-badge/">
 <meta property="og:image" content="https://greggrodgers02.github.io/Certified-Copilot-Pilot-badge/certified-copilot-pilot-badge.png">
 <meta property="og:image:width" content="750">
@@ -34,121 +34,107 @@
 
 <style>
   :root {
-    --bg: #f6f7f9;
-    --surface: #ffffff;
-    --border: #d9dde3;
-    --text: #14171c;
-    --muted: #5b636e;
-    --navy: #012349;
-    --code-bg: #eef1f5;
-    --accent: #0b5fd0;
+    --bg: #f6f7f9; --surface: #ffffff; --border: #d9dde3;
+    --text: #14171c; --muted: #5b636e; --code-bg: #eef1f5;
+    --accent: #0b5fd0; --accent-text: #ffffff; --navy: #012349;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #0e1116;
-      --surface: #171b22;
-      --border: #2b313b;
-      --text: #e7eaee;
-      --muted: #99a2ae;
-      --navy: #9dc4f2;
-      --code-bg: #10141a;
-      --accent: #74aaf5;
+      --bg: #0e1116; --surface: #171b22; --border: #2b313b;
+      --text: #e7eaee; --muted: #99a2ae; --code-bg: #10141a;
+      --accent: #2f6fd8; --accent-text: #ffffff; --navy: #9dc4f2;
     }
   }
-
   * { box-sizing: border-box; }
   body {
-    margin: 0;
-    padding: 2.5rem 1.25rem 4rem;
-    background: var(--bg);
-    color: var(--text);
-    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0; padding: 2.5rem 1.25rem 4rem;
+    background: var(--bg); color: var(--text);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     -webkit-text-size-adjust: 100%;
   }
-  main { max-width: 760px; margin: 0 auto; }
-
+  main { max-width: 640px; margin: 0 auto; }
   h1 {
-    font-size: clamp(1.6rem, 4.5vw, 2.2rem);
-    line-height: 1.2;
-    margin: 0 0 .5rem;
-    letter-spacing: -0.01em;
+    font-size: clamp(1.6rem, 5vw, 2.1rem); line-height: 1.2;
+    margin: 0 0 .5rem; letter-spacing: -0.01em;
   }
+  .lede { color: var(--muted); margin: 0 0 2rem; font-size: 1.05rem; }
   h2 {
-    font-size: 1.15rem;
-    margin: 2.5rem 0 .75rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
+    font-size: 1.1rem; margin: 2.5rem 0 .75rem;
+    padding-top: 1.5rem; border-top: 1px solid var(--border);
   }
   h3 { font-size: .95rem; margin: 1.5rem 0 .4rem; color: var(--muted); font-weight: 600; }
   p { margin: 0 0 1rem; }
-  .lede { color: var(--muted); font-size: 1.05rem; margin-bottom: 2rem; }
+  a { color: var(--accent); }
 
-  /* The badge has a transparent center and a dark navy ring, so it is always
-     shown on a light plate to stay legible in both color schemes. */
-  .badge-plate {
-    background: #ffffff;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.75rem;
-    display: flex;
-    justify-content: center;
+  /* Always a light plate: the badge ring is dark navy and its center is
+     transparent, so it needs a light ground in either color scheme. */
+  .stage {
+    background: #ffffff; border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem; margin-bottom: 1.25rem;
   }
-  .badge-plate img {
-    width: 100%;
-    max-width: 340px;
-    height: auto;
-    display: block;
+  #canvas {
+    width: 100%; max-width: 400px; height: auto; display: block; margin: 0 auto;
+    touch-action: none; cursor: grab;
   }
+  #canvas.dragging { cursor: grabbing; }
+  #canvas.empty { cursor: default; }
 
-  dl.facts {
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    gap: .35rem 1.25rem;
-    margin: 1.25rem 0 0;
-    font-size: .92rem;
+  .drop {
+    border: 2px dashed var(--border); border-radius: 12px;
+    padding: 2rem 1rem; text-align: center; color: var(--muted);
+    margin-bottom: 1.25rem; transition: border-color .15s, background .15s;
   }
-  dl.facts dt { color: var(--muted); }
-  dl.facts dd { margin: 0; }
+  .drop.over { border-color: var(--accent); background: var(--code-bg); }
+  .drop p { margin: 0 0 .75rem; }
+
+  .controls { display: grid; gap: 1rem; margin-bottom: 1.25rem; }
+  .controls[hidden] { display: none; }
+  .row { display: grid; grid-template-columns: 5.5rem 1fr; align-items: center; gap: .75rem; }
+  .row label { color: var(--muted); font-size: .9rem; }
+  input[type=range] { width: 100%; accent-color: var(--accent); }
+
+  .actions { display: flex; flex-wrap: wrap; gap: .6rem; }
+  button {
+    font: inherit; font-size: .95rem; padding: .55rem 1.1rem;
+    border-radius: 8px; border: 1px solid var(--border);
+    background: var(--surface); color: var(--text); cursor: pointer;
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+  button.big { font-size: 1rem; padding: .7rem 1.4rem; }
+
+  .privacy {
+    color: var(--muted); font-size: .875rem; margin: 0 0 2rem;
+    padding: .75rem .9rem; background: var(--code-bg);
+    border-radius: 8px; border: 1px solid var(--border);
+  }
 
   .url-box {
-    background: var(--code-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: .75rem .9rem;
-    overflow-x: auto;
+    background: var(--code-bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: .75rem .9rem; overflow-x: auto;
   }
   .url-box code { white-space: pre; }
-
-  code {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-    font-size: .875em;
-  }
-  p code, li code {
-    background: var(--code-bg);
-    border-radius: 4px;
-    padding: .12em .35em;
-  }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .875em; }
+  p code, li code { background: var(--code-bg); border-radius: 4px; padding: .12em .35em; }
   pre {
-    background: var(--code-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: .9rem;
-    overflow-x: auto;
-    margin: 0 0 1rem;
+    background: var(--code-bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: .9rem; overflow-x: auto; margin: 0 0 1rem;
   }
   pre code { background: none; padding: 0; }
 
   ul, ol { padding-left: 1.25rem; margin: 0 0 1rem; }
   li { margin-bottom: .4rem; }
 
-  a { color: var(--accent); }
+  dl.facts {
+    display: grid; grid-template-columns: max-content 1fr;
+    gap: .35rem 1.25rem; margin: 1.25rem 0 0; font-size: .92rem;
+  }
+  dl.facts dt { color: var(--muted); }
+  dl.facts dd { margin: 0; }
 
   footer {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-size: .85rem;
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: .85rem;
   }
 </style>
 </head>
@@ -156,59 +142,73 @@
 <main>
 
   <h1>Certified Copilot Pilot Badge</h1>
-  <p class="lede">A stable, public home for the Certified Copilot Pilot badge image, served over HTTPS by GitHub Pages so it can be referenced as an external image source.</p>
+  <p class="lede">Add the badge to your photo. Upload a headshot, nudge it into place, and download it — that's the whole thing.</p>
 
-  <div class="badge-plate">
-    <img src="certified-copilot-pilot-badge.png"
-         width="750" height="750"
-         alt="Certified Copilot Pilot badge: a dark navy ring lettered CERTIFIED COPILOT PILOT in white capitals, with gold aviator wings and the Microsoft Copilot mark at the bottom of the ring, surrounding a transparent circular center.">
+  <div class="stage">
+    <canvas id="canvas" class="empty" width="750" height="750"
+            aria-label="Preview of your photo inside the badge frame"></canvas>
   </div>
 
-  <h2>The image</h2>
+  <div class="drop" id="drop">
+    <p>Drag your photo here, or</p>
+    <button id="pick" class="primary big">Choose a photo</button>
+    <input type="file" id="file" accept="image/*" hidden>
+  </div>
 
-  <p>The badge is a circular <strong>frame</strong>, not a solid graphic. A dark navy ring carries the words <em>CERTIFIED COPILOT PILOT</em> in white capitals. Gold aviator wings spread across the bottom of the ring, flanking a gold-rimmed medallion holding the Microsoft Copilot mark. The center of the badge is fully transparent, so it can be layered over a profile photo, an avatar, or any background color.</p>
+  <div class="controls" id="controls" hidden>
+    <div class="row">
+      <label for="zoom">Zoom</label>
+      <input type="range" id="zoom" min="100" max="300" value="100">
+    </div>
+    <div class="row">
+      <label for="posx">Left / right</label>
+      <input type="range" id="posx" min="-100" max="100" value="0">
+    </div>
+    <div class="row">
+      <label for="posy">Up / down</label>
+      <input type="range" id="posy" min="-100" max="100" value="0">
+    </div>
+    <div class="actions">
+      <button id="download" class="primary big">Download my badge</button>
+      <button id="reset">Reset position</button>
+      <button id="clear">Start over</button>
+    </div>
+  </div>
+
+  <p class="privacy">
+    Your photo never leaves your device. There is no upload, no server, and no
+    account — the badge is placed on your picture right here in the browser.
+  </p>
+
+  <h2>Tips</h2>
+  <ul>
+    <li>A square photo works best, but any shape is fine — the sides are trimmed to fit the circle.</li>
+    <li>Drag directly on the preview to reposition, or use the sliders.</li>
+    <li>Use a photo at least 600&nbsp;pixels on its shortest side so it stays sharp.</li>
+    <li>The download is a 750&nbsp;&times;&nbsp;750 PNG, sized for a profile picture in Teams, LinkedIn, or your email signature.</li>
+  </ul>
+
+  <h2>About the badge</h2>
+
+  <p>The badge is a circular <strong>frame</strong>, not a solid graphic. A dark navy ring carries the words <em>CERTIFIED COPILOT PILOT</em> in white capitals. Gold aviator wings spread across the bottom of the ring, flanking a gold-rimmed medallion holding the Microsoft Copilot mark. The center is fully transparent, which is why your photo shows through it.</p>
 
   <dl class="facts">
     <dt>File</dt><dd><code>certified-copilot-pilot-badge.png</code></dd>
     <dt>Format</dt><dd>PNG, 8-bit RGBA (alpha transparency)</dd>
     <dt>Dimensions</dt><dd>750 × 750 pixels, square</dd>
-    <dt>Center</dt><dd>Fully transparent — intended as an overlay frame</dd>
-    <dt>License</dt><dd>See the repository</dd>
+    <dt>Center</dt><dd>Transparent circle, radius 295&nbsp;px</dd>
   </dl>
 
-  <h2>Put the badge on a photo</h2>
+  <h2>Using the badge elsewhere</h2>
 
-  <p>Since the center is transparent, the badge is meant to frame a square photo. The <a href="overlay.html"><strong>overlay tool</strong></a> does this in your browser — drop in a photo, drag to position, download the result as a 750&nbsp;&times;&nbsp;750 PNG. Nothing is uploaded anywhere.</p>
-
-  <h2>Direct image URL</h2>
-
-  <p>Use this URL anywhere an external image source is requested. It is served with the correct <code>image/png</code> content type over HTTPS, from GitHub&rsquo;s CDN, with no authentication and no hotlinking restrictions.</p>
-
+  <h3>Direct image URL</h3>
+  <p>Served as <code>image/png</code> over HTTPS with no authentication, for anywhere an external image source is needed:</p>
   <div class="url-box"><code>https://greggrodgers02.github.io/Certified-Copilot-Pilot-badge/certified-copilot-pilot-badge.png</code></div>
 
-  <h2>Using the badge in a Copilot agent</h2>
-
-  <h3>As an image the agent returns in chat</h3>
-  <p>Paste the markdown below into your agent&rsquo;s instructions, and tell the agent when to show it — for example, &ldquo;when a user completes the training, display the Certified Copilot Pilot badge.&rdquo;</p>
+  <h3>In a Copilot agent</h3>
+  <p>To have an agent display the badge, put this in its instructions:</p>
   <pre><code>![Certified Copilot Pilot badge](https://greggrodgers02.github.io/Certified-Copilot-Pilot-badge/certified-copilot-pilot-badge.png)</code></pre>
-
-  <h3>As a public website knowledge source</h3>
-  <p>Add this page&rsquo;s URL as a public website source, so the agent can describe the badge and hand out the image link:</p>
-  <div class="url-box"><code>https://greggrodgers02.github.io/Certified-Copilot-Pilot-badge/</code></div>
-
-  <h3>Embedded in another page</h3>
-  <pre><code>&lt;img src="https://greggrodgers02.github.io/Certified-Copilot-Pilot-badge/certified-copilot-pilot-badge.png"
-     width="750" height="750"
-     alt="Certified Copilot Pilot badge"&gt;</code></pre>
-
-  <h3>Layered over a photo</h3>
-  <p>Because the center is transparent, the badge can be stacked on top of a square image:</p>
-  <pre><code>&lt;div style="position:relative;width:300px;aspect-ratio:1"&gt;
-  &lt;img src="photo.jpg" style="position:absolute;inset:0;width:100%;height:100%;
-       object-fit:cover;border-radius:50%"&gt;
-  &lt;img src="https://greggrodgers02.github.io/Certified-Copilot-Pilot-badge/certified-copilot-pilot-badge.png"
-       style="position:absolute;inset:0;width:100%;height:100%"&gt;
-&lt;/div&gt;</code></pre>
+  <p>To have an agent build these images from uploaded headshots, see <a href="agent-instructions.md">the agent instructions</a>.</p>
 
   <footer>
     Published with GitHub Pages from
@@ -216,5 +216,148 @@
   </footer>
 
 </main>
+
+<script>
+(function () {
+  'use strict';
+
+  var SIZE = 750;
+  // Measured from the badge's alpha channel: the transparent center has a
+  // radius of ~295px. Clip a touch wider so the photo tucks under the ring
+  // instead of leaving a hairline gap.
+  var INNER_R = 298;
+
+  var canvas   = document.getElementById('canvas');
+  var ctx      = canvas.getContext('2d');
+  var drop     = document.getElementById('drop');
+  var fileIn   = document.getElementById('file');
+  var controls = document.getElementById('controls');
+  var zoomIn   = document.getElementById('zoom');
+  var posXIn   = document.getElementById('posx');
+  var posYIn   = document.getElementById('posy');
+
+  var badge = new Image();
+  var badgeReady = false;
+  var photo = null;
+
+  badge.onload = function () { badgeReady = true; render(); };
+  badge.onerror = function () {
+    ctx.fillStyle = '#5b636e';
+    ctx.font = '26px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('Could not load the badge image.', SIZE / 2, SIZE / 2);
+  };
+  badge.src = 'certified-copilot-pilot-badge.png';
+
+  function render() {
+    ctx.clearRect(0, 0, SIZE, SIZE);
+
+    if (photo) {
+      var zoom = Number(zoomIn.value) / 100;
+      // "Cover" the inner circle at zoom 1, then scale up from there.
+      var d = INNER_R * 2;
+      var base = Math.max(d / photo.width, d / photo.height);
+      var scale = base * zoom;
+      var w = photo.width * scale;
+      var h = photo.height * scale;
+      var cx = SIZE / 2 + (Number(posXIn.value) / 100) * INNER_R;
+      var cy = SIZE / 2 + (Number(posYIn.value) / 100) * INNER_R;
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(SIZE / 2, SIZE / 2, INNER_R, 0, Math.PI * 2);
+      ctx.clip();
+      ctx.drawImage(photo, cx - w / 2, cy - h / 2, w, h);
+      ctx.restore();
+    }
+
+    if (badgeReady) ctx.drawImage(badge, 0, 0, SIZE, SIZE);
+  }
+
+  function loadFile(f) {
+    if (!f || !/^image\//.test(f.type)) return;
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var img = new Image();
+      img.onload = function () {
+        photo = img;
+        resetPosition();
+        controls.hidden = false;
+        canvas.classList.remove('empty');
+        render();
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(f);
+  }
+
+  function resetPosition() {
+    zoomIn.value = 100; posXIn.value = 0; posYIn.value = 0;
+  }
+
+  document.getElementById('pick').addEventListener('click', function () { fileIn.click(); });
+  fileIn.addEventListener('change', function () { loadFile(this.files[0]); });
+
+  ['dragenter', 'dragover'].forEach(function (ev) {
+    drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('over'); });
+  });
+  ['dragleave', 'drop'].forEach(function (ev) {
+    drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('over'); });
+  });
+  drop.addEventListener('drop', function (e) {
+    if (e.dataTransfer && e.dataTransfer.files) loadFile(e.dataTransfer.files[0]);
+  });
+  // Stop a stray drop elsewhere on the page from navigating away from the tool.
+  window.addEventListener('dragover', function (e) { e.preventDefault(); });
+  window.addEventListener('drop', function (e) { e.preventDefault(); });
+
+  [zoomIn, posXIn, posYIn].forEach(function (el) { el.addEventListener('input', render); });
+
+  document.getElementById('reset').addEventListener('click', function () {
+    resetPosition(); render();
+  });
+
+  document.getElementById('clear').addEventListener('click', function () {
+    photo = null; fileIn.value = ''; controls.hidden = true;
+    canvas.classList.add('empty'); render();
+  });
+
+  document.getElementById('download').addEventListener('click', function () {
+    var a = document.createElement('a');
+    a.download = 'certified-copilot-pilot-badge.png';
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+  });
+
+  // --- drag to reposition ---------------------------------------------------
+  var dragging = false, lastX = 0, lastY = 0;
+
+  canvas.addEventListener('pointerdown', function (e) {
+    if (!photo) return;
+    dragging = true; lastX = e.clientX; lastY = e.clientY;
+    canvas.classList.add('dragging');
+    canvas.setPointerCapture(e.pointerId);
+  });
+
+  canvas.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    // Translate screen pixels into the canvas's 750-unit space, then into the
+    // slider's -100..100 range.
+    var perUnit = canvas.clientWidth / SIZE;
+    var dx = ((e.clientX - lastX) / perUnit) / INNER_R * 100;
+    var dy = ((e.clientY - lastY) / perUnit) / INNER_R * 100;
+    lastX = e.clientX; lastY = e.clientY;
+    posXIn.value = Math.max(-100, Math.min(100, Number(posXIn.value) + dx));
+    posYIn.value = Math.max(-100, Math.min(100, Number(posYIn.value) + dy));
+    render();
+  });
+
+  ['pointerup', 'pointercancel'].forEach(function (ev) {
+    canvas.addEventListener(ev, function () {
+      dragging = false; canvas.classList.remove('dragging');
+    });
+  });
+})();
+</script>
 </body>
 </html>

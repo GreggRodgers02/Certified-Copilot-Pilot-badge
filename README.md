@@ -17,12 +17,13 @@ Once Pages is enabled (see below):
 | Purpose | URL |
 | --- | --- |
 | Direct image | `https://greggrodgers02.github.io/Certified-Copilot-Pilot-badge/certified-copilot-pilot-badge.png` |
-| Landing page | `https://greggrodgers02.github.io/Certified-Copilot-Pilot-badge/` |
-| Overlay tool | `https://greggrodgers02.github.io/Certified-Copilot-Pilot-badge/overlay.html` |
+| Badge tool (share this) | `https://greggrodgers02.github.io/Certified-Copilot-Pilot-badge/` |
 
-Use the **image URL** when the agent needs to display or return the badge. Use the
-**landing page URL** when adding a public website knowledge source, since crawlers
-index HTML pages rather than bare image files.
+Share the **tool URL** with teammates — they upload a photo and download the
+finished badge, with nothing to install and nothing uploaded anywhere. Use the
+**image URL** when an agent needs to display or return the badge, and the same tool
+URL when adding a public website knowledge source, since crawlers index HTML pages
+rather than bare image files.
 
 ## Enabling GitHub Pages
 
@@ -40,8 +41,8 @@ Pages on the GitHub Free plan.
 | File | Purpose |
 | --- | --- |
 | `certified-copilot-pilot-badge.png` | The badge image |
-| `index.html` | Landing page: renders the badge, describes it, lists the URLs |
-| `overlay.html` | Browser tool to frame a photo with the badge; runs client-side |
+| `index.html` | The badge tool: upload a photo, position it, download it. Also documents the badge and its URLs |
+| `overlay.html` | Redirect to the home page, where the tool now lives |
 | `.nojekyll` | Serves files as-is, skipping Jekyll processing |
 | `robots.txt` | Allows crawling; points at the sitemap |
 | `sitemap.xml` | Helps search engines discover the page and image |
