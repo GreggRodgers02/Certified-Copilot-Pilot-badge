@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://greggrodgers02.github.io/Certified-Copilot-Pilot-badge/sitemap.xml
