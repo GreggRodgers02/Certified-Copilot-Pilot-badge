@@ -18,6 +18,7 @@ Once Pages is enabled (see below):
 | --- | --- |
 | Direct image | `https://greggrodgers02.github.io/Certified-Copilot-Pilot-badge/certified-copilot-pilot-badge.png` |
 | Landing page | `https://greggrodgers02.github.io/Certified-Copilot-Pilot-badge/` |
+| Overlay tool | `https://greggrodgers02.github.io/Certified-Copilot-Pilot-badge/overlay.html` |
 
 Use the **image URL** when the agent needs to display or return the badge. Use the
 **landing page URL** when adding a public website knowledge source, since crawlers
@@ -40,6 +41,7 @@ Pages on the GitHub Free plan.
 | --- | --- |
 | `certified-copilot-pilot-badge.png` | The badge image |
 | `index.html` | Landing page: renders the badge, describes it, lists the URLs |
+| `overlay.html` | Browser tool to frame a photo with the badge; runs client-side |
 | `.nojekyll` | Serves files as-is, skipping Jekyll processing |
 | `robots.txt` | Allows crawling; points at the sitemap |
 | `sitemap.xml` | Helps search engines discover the page and image |
